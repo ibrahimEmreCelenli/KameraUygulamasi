@@ -1,6 +1,6 @@
 //Samet ELMALI - 22120205060
 //İbrahim Emre ÇELENLİ - 22120205061
-//Battal Doğukan AZAR - 21120205021
+//Battal Doğukan HAZAR - 21120205021
 
 package org.example;
 
@@ -25,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.time.Duration;
+import java.util.Arrays;
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
@@ -128,7 +129,7 @@ public class Kamera {
                     }
 
                     //ikinci arayüz için bir nesne oluşturuluyor
-                    ikinciGUI objGUI = new ikinciGUI();
+                    filtreGUI objGUI = new filtreGUI();
 
                     //Yeni oluşturacağımız arayüzün içerik bölmesi katmanına ikinciGUI'deki panel'in içeriği ekleniyor
                     objGUI.setContentPane(objGUI.panel);
@@ -286,14 +287,14 @@ public class Kamera {
     }
 }
 
-class ikinciGUI extends JFrame {
+class filtreGUI extends JFrame {
 
     //GUI için gerekli değişkenler
     JPanel panel;
     JButton btnPaylas, btnSBEfekt, btnBulanik, btnNegatif;
     JLabel lblFoto;
 
-    public ikinciGUI() {
+    public filtreGUI() {
 
         //Paylaş butonuna basılıp basılmadığını kontrol eden action listener
         btnPaylas.addActionListener(new ActionListener() {
@@ -692,7 +693,9 @@ class paylasGUI extends JFrame {
     //gerekli değişkenler
     JPanel panel;
     JButton btnTwitter;
-    private JTextField txtKullanici, txtSifre;
+    private JTextField txtKullanici;
+    private JPasswordField fldSifre;
+
 
     public paylasGUI() {
 
@@ -730,7 +733,8 @@ class paylasGUI extends JFrame {
 
                 //yeni bir twitter nesnesi oluşturuluyor ve bu nesneyi
                 //oluştururken constructor'ın aldığı parametreler arayüzden okunuypr
-                Twitter twitter = new Twitter(txtKullanici.getText(), txtSifre.getText());
+                String sifre = String.valueOf(fldSifre.getPassword());
+                Twitter twitter = new Twitter(txtKullanici.getText(), sifre);
 
                 //twitter class'ındaki girişYap ve fotoPaylas metodları çağırılıyor
                 twitter.girisYap();
